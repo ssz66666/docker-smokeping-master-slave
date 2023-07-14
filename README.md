@@ -1,6 +1,6 @@
 # docker-smokeping-master-slave
 
-Docker image for deploying [smokeping](https://oss.oetiker.ch/smokeping/) with master-slave configuration, based on [docker-smokeping](https://github.com/linuxserver/docker-smokeping/) from [linuxserver.io](linuxserver.io)
+Docker image for deploying [smokeping](https://oss.oetiker.ch/smokeping/) with master-slave configuration, based on [docker-smokeping](https://github.com/linuxserver/docker-smokeping/) from [linuxserver.io](https://www.linuxserver.io)
 
 ## Usage
 
