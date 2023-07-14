@@ -25,17 +25,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Login to CM ecloud registry
-        uses: docker/login-action@v2
-        with:
-          registry: cis-hub-huadong-4.cmecloud.cn
-          username: ${{ secrets.CMECLOUD_USERNAME }}
-          password: ${{ secrets.CMECLOUD_TOKEN }}
-      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
           tags: |
             ssz66666/docker-smokeping-master-slave:latest
-            cis-hub-huadong-4.cmecloud.cn/cmi-product/smokeping-master-slave:v1
