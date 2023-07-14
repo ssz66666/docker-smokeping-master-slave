@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+if [ -e /run/secrets/master_secrets ]; then
+    cp /run/secrets/master_secrets /etc/smokeping/smokeping_secrets && \
+    chown abc:abc /etc/smokeping/smokeping_secrets && \
+    chmod 600 /etc/smokeping/smokeping_secrets
+fi
+
+if [ ! -z "${MASTER_URL}" ] && [ ! -z "${SLAVE_NAME}" ] && [ -e /run/secrets/slave_secret ]; then
+    cp /run/secrets/slave_secret /etc/smokeping/slave_secret && \
+    chown abc:abc /etc/smokeping/slave_secret && \
+    chmod 600 /etc/smokeping/slave_secret
+    exec s6-setuidgid abc /usr/sbin/smokeping --master-url="${MASTER_URL}" --slave-name="${SLAVE_NAME}" --cache-dir=/tmp --shared-secret=/etc/smokeping/slave_secret --nodaemon
+else
+    exec s6-setuidgid abc /usr/sbin/smokeping --config="/etc/smokeping/config" --nodaemon
+fi
